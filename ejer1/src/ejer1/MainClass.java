@@ -323,10 +323,15 @@ public class MainClass extends javax.swing.JFrame {
             } else if (editable == 1) {
                 if (JOptionPane.showConfirmDialog(this, "Se guardará la información. ¿Desea continuar?") == 0) {
                     if(newUser == 1){
-                        //TODO: Create new user
                         User newUser = new User();
-                        //save user in database
-                        
+                        newUser.setName(jTextField3.getText());
+                        newUser.setLastname(jTextField4.getText());
+                        newUser.setSurname(jTextField1.getText());
+                        newUser.setEmail(jTextField5.getText());
+                        newUser.setUsername(jTextField6.getText());
+                        newUser.setPassword(jPasswordField1.getText());
+                        newUser.setUserType(jComboBox1.getSelectedIndex());
+                        //TODO: save user in database
                     } else {
                         //TODO: Update user from DB.
                     }

@@ -36,14 +36,13 @@
                 <input type="text" name="username" maxlength="40" required="required"><br>
                 <label for="password">Contrase&ntilde;a</label>
                 <input type="password" name="password" required="required"><br>
-                <label for="typeUser">Tipo de usuario</label>
-                <select name="typeUser" required="required">
+                <label for="userType">Tipo de usuario</label>
+                <select name="userType" required="required">
                     <option value="1">Administrador</option>
                     <option value="2" selected="selected">Est&aacute;ndar</option>
                 </select><br><br>
                 <input type="submit" class="button" name="send" value="Registrar"><br>
             </form>
-            
         </div>
     </body>
 </html>
