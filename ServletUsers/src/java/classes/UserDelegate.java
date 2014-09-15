@@ -71,4 +71,9 @@ public class UserDelegate {
         System.out.println("Login verification");
         return userDao.login(user,connection);
     }
+
+    public LinkedList<User> selectUser(String search) {
+        System.out.println("Select user from database");
+        return userDao.selectUser(search, connection);
+    }
 }

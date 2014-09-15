@@ -23,7 +23,7 @@
         </div>
         <div id="content">
             <h1>Registro de usuario</h1>
-            <form id="signup" name="signup" method="post" action="SignUp">
+            <form id="signup" name="signup" method="post" action="Register">
                 <label for="name">Nombre(s)</label>
                 <input type="text" name="name" required="required"><br>
                 <label for="lastname">Apellido paterno</label>

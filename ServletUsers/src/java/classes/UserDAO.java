@@ -20,6 +20,8 @@ import java.util.LinkedList;
 public class UserDAO {
     public static final String SQL_SELECT_ID = "select * from user where idUser = ?";
     public static final String SQL_SELECT_USERNAME = "select * from user where username like ?";
+    public static final String SQL_SEARCH = "select * from user where username like ? or name like ?"
+            + " or lastname like ? or surname like ? or email like ?";
     public static final String SQL_LOGIN = "select * from user where username=? and password=?";
     public static final String SQL_SELECTALL = "select * from user";
     public static final String SQL_INSERT = "insert into user(name, lastname, surname, email, username, "
@@ -222,6 +224,37 @@ public class UserDAO {
             else {
                 System.out.println("No se encuentra el usuario");
                 return false;
+            }
+        } finally {
+            if(rs != null)
+                rs.close();
+            if(ps != null)
+                ps.close();
+            if(con != null)
+                con.close();
+        }
+    }
+
+    LinkedList<User> selectUser(String search, Connection con) throws SQLException {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            ps = con.prepareStatement(SQL_SEARCH);
+            ps.setString(1, "%"+search+"%");
+            ps.setString(2, "%"+search+"%");
+            ps.setString(3, "%"+search+"%");
+            ps.setString(4, "%"+search+"%");
+            ps.setString(5, "%"+search+"%");
+            rs = ps.executeQuery();
+            LinkedList <User> resultados = getResults(rs);
+            if(resultados.size() > 0) {
+                System.out.println("Se ha encontrado el usuario \n");
+                resultados.get(0).toString();
+                return resultados;
+            }
+            else {
+                System.out.println("No se encuentra el usuario");
+                return null;
             }
         } finally {
             if(rs != null)
