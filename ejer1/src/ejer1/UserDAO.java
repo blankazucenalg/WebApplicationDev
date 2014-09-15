@@ -18,29 +18,30 @@ import java.util.LinkedList;
  */
 
 public class UserDAO {
-    public static final String SQL_SELECT = "select * from user where idUser=?";
+    public static final String SQL_SELECT_ID = "select * from user where idUser = ?";
+    public static final String SQL_SELECT_USERNAME = "select * from user where username like ?";
     public static final String SQL_SELECTALL = "select * from user";
     public static final String SQL_INSERT = "insert into user(name, lastname, surname, email, username, "
             + "password, userType) values(?,?,?,?,?,?,?)";
     public static final String SQL_UPDATE = "update user set name=?, lastname=?, surname=?, email=?, username=?,"
-            + " password=?, userType=? where username like ?";
+            + " password=?, userType=? where idUser = ?";
     public static final String SQL_DELETE = "delete from user where idUser=?";
 
     public UserDAO() {
     }
     
-    public User selectUser(User user, Connection con)  throws SQLException {
+    public LinkedList<User> selectUser(User user, Connection con)  throws SQLException {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            ps = con.prepareStatement(SQL_SELECT);
-            ps.setString(1, user.getUsername());
+            ps = con.prepareStatement(SQL_SELECT_USERNAME);
+            ps.setString(1, "%"+user.getUsername()+"%");
             rs = ps.executeQuery();
             LinkedList <User> resultados = getResults(rs);
             if(resultados.size() > 0) {
                 System.out.println("Se ha encontrado el usuario \n");
                 resultados.get(0).toString();
-                return resultados.get(0);
+                return resultados;
             }
             else {
                 System.out.println("No se encuentra el usuario");
@@ -84,7 +85,7 @@ public class UserDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            ps = con.prepareStatement(SQL_SELECT);
+            ps = con.prepareStatement(SQL_SELECT_ID);
             ps.setInt(1, user.getIdUser());
             rs = ps.executeQuery();
             LinkedList<User> resultados = getResults(rs);
@@ -115,7 +116,7 @@ public class UserDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            ps = con.prepareStatement(SQL_SELECT);
+            ps = con.prepareStatement(SQL_SELECT_ID);
             ps.setInt(1, user.getIdUser());
             rs = ps.executeQuery();
             LinkedList<User> resultados = getResults(rs);
@@ -145,7 +146,7 @@ public class UserDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            ps = con.prepareStatement(SQL_SELECT);
+            ps = con.prepareStatement(SQL_SELECT_ID);
             ps.setInt(1, user.getIdUser());
             rs = ps.executeQuery();
             LinkedList<User> resultados = getResults(rs);
@@ -157,8 +158,9 @@ public class UserDAO {
                 ps.setString(3, user.getSurname());
                 ps.setString(4, user.getEmail());
                 ps.setString(5, user.getUsername());
-                ps.setString(5, user.getPassword());
-                ps.setInt(5, user.getUserType());
+                ps.setString(6, user.getPassword());
+                ps.setInt(7, user.getUserType());
+                ps.setInt(8, user.getIdUser());
                 ps.executeUpdate();
 		System.out.println("El usuario se ha actualizado");
             }

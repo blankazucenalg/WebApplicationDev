@@ -5,7 +5,7 @@
  */
 package ejer1;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
@@ -29,12 +29,7 @@ public class MainClass extends javax.swing.JFrame {
         disableEdition();
         jButton1.setEnabled(false);
         jButton3.setEnabled(false);
-
-        //TODO: Select Usuarios from database and add them to the list
-        List<User> users = new ArrayList<User>();
-        users.add(new User(1, "Blanca Azucena", "López", "Garduño", "blankazucenalg@gmail.com", "blankazucenalg", "azu1234", 1));
-        users.add(new User(2, "Luis Alberto", "López", "Garduño", "luisloki95@gmail.com", "luisloki95", "betito", 2));
-        setList(users);
+        setListData();
 
         jList2.addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -47,6 +42,7 @@ public class MainClass extends javax.swing.JFrame {
                         jButton1.setEnabled(true);
                         jButton3.setEnabled(true);
                         User user = (User) jList2.getSelectedValue();
+                        jLabel9.setText(""+user.getIdUser());
                         jTextField3.setText(user.getName());
                         jTextField4.setText(user.getLastname());
                         jTextField1.setText(user.getSurname());
@@ -65,10 +61,12 @@ public class MainClass extends javax.swing.JFrame {
         jList2.setModel(new javax.swing.AbstractListModel() {
             List results = resultSet;
 
+            @Override
             public int getSize() {
                 return results.size();
             }
 
+            @Override
             public Object getElementAt(int i) {
                 return results.get(i);
             }
@@ -109,6 +107,7 @@ public class MainClass extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(254, 254, 254));
@@ -212,6 +211,8 @@ public class MainClass extends javax.swing.JFrame {
 
         jLabel7.setText("Tipo de usuario");
 
+        jLabel9.setText("IdUser");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -220,7 +221,9 @@ public class MainClass extends javax.swing.JFrame {
             .addComponent(jTextField4)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addComponent(jLabel9)
+                .addGap(31, 31, 31)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1))
@@ -246,7 +249,8 @@ public class MainClass extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton1)
-                        .addComponent(jButton3))
+                        .addComponent(jButton3)
+                        .addComponent(jLabel9))
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -322,19 +326,24 @@ public class MainClass extends javax.swing.JFrame {
                 enableEdition();
             } else if (editable == 1) {
                 if (JOptionPane.showConfirmDialog(this, "Se guardará la información. ¿Desea continuar?") == 0) {
+                        User user = new User();
+                        user.setName(jTextField3.getText());
+                        user.setLastname(jTextField4.getText());
+                        user.setSurname(jTextField1.getText());
+                        user.setEmail(jTextField5.getText());
+                        user.setUsername(jTextField6.getText());
+                        user.setPassword(jPasswordField1.getText());
+                        user.setUserType(jComboBox1.getSelectedIndex()+1);
+                        UserData manager = new UserData();
                     if(newUser == 1){
-                        User newUser = new User();
-                        newUser.setName(jTextField3.getText());
-                        newUser.setLastname(jTextField4.getText());
-                        newUser.setSurname(jTextField1.getText());
-                        newUser.setEmail(jTextField5.getText());
-                        newUser.setUsername(jTextField6.getText());
-                        newUser.setPassword(jPasswordField1.getText());
-                        newUser.setUserType(jComboBox1.getSelectedIndex());
-                        //TODO: save user in database
+                        //Insert new user
+                        manager.crearUsuario(user);
                     } else {
-                        //TODO: Update user from DB.
+                        //TODO: Update user
+                        user.setIdUser(Integer.parseInt(jLabel9.getText()));
+                        manager.actualizarUsuario(user);
                     }
+                    setListData();
                 }
                 disableEdition();
                 jList2.setEnabled(true);
@@ -363,6 +372,15 @@ public class MainClass extends javax.swing.JFrame {
         //Buscar usuarios y mostrarlos en la lista
         String search = jTextField2.getText();
         jTextField2.setText("");
+        if(search.equals("")){ //Empty field. Reload List
+            setListData();
+        } else {
+            UserData manager = new UserData();
+            LinkedList<User> results;
+            results = manager.buscarUsuario(search);
+            setList(results);
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -391,19 +409,16 @@ public class MainClass extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainClass.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainClass.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainClass.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MainClass.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new MainClass().setVisible(true);
             }
@@ -424,6 +439,7 @@ public class MainClass extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JList jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -447,5 +463,13 @@ public class MainClass extends javax.swing.JFrame {
         jTextField6.setText("");
         jPasswordField1.setText("");
         jComboBox1.setSelectedIndex(1);
+        jLabel9.setText("");
+    }
+
+    private void setListData() {
+        UserData manager = new UserData();
+        LinkedList<User> results;
+        results = manager.seleccionarUsuarios();
+        setList(results);
     }
 }

@@ -42,7 +42,7 @@ public class UserDelegate {
         System.out.println("\n" + "*************************" + "\n");
     }
     
-    public User selectUser(User user) throws SQLException {
+    public LinkedList<User> selectUser(User user) throws SQLException {
         System.out.println("Select user from database");
         return userDao.selectUser(user, connection);
     }

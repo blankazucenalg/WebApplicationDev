@@ -18,16 +18,7 @@ import java.util.logging.Logger;
 public class UserData {
     private UserDelegate userDelegate;
     
-    public void crearUsuario(String name, String lastname, String surname, String email, String username,
-            String password, int userType){
-        User user = new User();
-        user.setName(name);
-        user.setLastname(lastname);
-        user.setSurname(surname);
-        user.setEmail(email);
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setUserType(userType);
+    public void crearUsuario(User user){
         userDelegate = new UserDelegate();
         try {
             userDelegate.createUser(user);
@@ -35,17 +26,7 @@ public class UserData {
             Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void actualizarUsuario(int IdUser, String name, String lastname, String surname, String email, String username,
-            String password, int userType){
-        User user = new User();
-        user.setIdUser(IdUser);
-        user.setName(name);
-        user.setLastname(lastname);
-        user.setSurname(surname);
-        user.setEmail(email);
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setUserType(userType);
+    public void actualizarUsuario(User user){
         userDelegate = new UserDelegate();
         try {
             userDelegate.updateUser(user);
@@ -53,17 +34,7 @@ public class UserData {
             Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void borrarUsuario(int idUser, String name, String lastname, String surname, String email, String username,
-            String password, int userType){
-        User user = new User();
-        user.setIdUser(idUser);
-        user.setName(name);
-        user.setLastname(lastname);
-        user.setSurname(surname);
-        user.setEmail(email);
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setUserType(userType);
+    public void borrarUsuario(User user){
         userDelegate = new UserDelegate();
         try {
             userDelegate.deleteUser(user);
@@ -71,7 +42,7 @@ public class UserData {
             Logger.getLogger(UserData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public User buscarUsuario(String username){
+    public LinkedList<User> buscarUsuario(String username){
         User user = new User();
         user.setUsername(username);
         userDelegate = new UserDelegate();
