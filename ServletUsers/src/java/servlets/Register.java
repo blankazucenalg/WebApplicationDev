@@ -40,14 +40,27 @@ public class Register extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Register</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Register at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            out.println("<html>\n" +
+"    <head>\n" +
+"        <title>Registrar nuevo usuario</title>\n" +
+"        <meta charset=\"UTF-8\">\n" +
+"        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
+"        <link rel=\"stylesheet\" href=\"styles/principal.css\" title=\"Estilo principal\"/>\n" +
+"    </head>\n" +
+"    <body>\n" +
+"        <div id=\"menubar\">\n" +
+"            <ul>\n" +
+"                <li><a href=\"ManageUsers?search=\">Búsqueda de usuarios</a></li>\n" +
+"                <li><a href=\"SignUp.jsp\">Registrar nuevo usuario</a></li>\n" +
+"                <li><a href=\"index.jsp\">Cerrar sesión</a></li>\n" +
+"            </ul>\n" +
+"        </div>\n" +
+"        <div id=\"content\">\n" +
+"            <h1>Registro de usuario</h1>\n" +
+"            <p>No fue posible registrar el usuario</p>" +
+"        </div>\n" +
+"    </body>\n" +
+"</html>");
         }
     }
 
@@ -85,10 +98,11 @@ public class Register extends HttpServlet {
         user.setUsername(request.getParameter("username"));
         user.setPassword(request.getParameter("password"));
         user.setUserType(Integer.parseInt(request.getParameter("userType")));
+        System.out.println(user);
         UserDelegate manager = new UserDelegate();
         try {
             manager.createUser(user);
-            response.sendRedirect("ManageUsers");
+            response.sendRedirect("ManageUsers?search=");
         } catch (SQLException ex) {
             Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
         }        

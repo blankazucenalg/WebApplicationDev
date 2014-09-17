@@ -19,7 +19,7 @@ import java.util.LinkedList;
 
 public class UserDAO {
     public static final String SQL_SELECT_ID = "select * from user where idUser = ?";
-    public static final String SQL_SELECT_USERNAME = "select * from user where username like ?";
+    public static final String SQL_SELECT_USERNAME = "select * from user where username = ?";
     public static final String SQL_SEARCH = "select * from user where username like ? or name like ?"
             + " or lastname like ? or surname like ? or email like ?";
     public static final String SQL_LOGIN = "select * from user where username=? and password=?";
@@ -33,7 +33,7 @@ public class UserDAO {
     public UserDAO() {
     }
     
-    public LinkedList<User> selectUser(User user, Connection con)  throws SQLException {
+    public LinkedList<User> selectUserByUsername(User user, Connection con)  throws SQLException {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -45,6 +45,32 @@ public class UserDAO {
                 System.out.println("Se ha encontrado el usuario \n");
                 resultados.get(0).toString();
                 return resultados;
+            }
+            else {
+                System.out.println("No se encuentra el usuario");
+                return null;
+            }
+        } finally {
+            if(rs != null)
+                rs.close();
+            if(ps != null)
+                ps.close();
+            if(con != null)
+                con.close();
+        }
+    }
+    public User selectUserById(int idUser, Connection con)  throws SQLException {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            ps = con.prepareStatement(SQL_SELECT_ID);
+            ps.setInt(1, idUser);
+            rs = ps.executeQuery();
+            LinkedList <User> resultados = getResults(rs);
+            if(resultados.size() > 0) {
+                System.out.println("Se ha encontrado el usuario \n");
+                resultados.get(0).toString();
+                return resultados.get(0);
             }
             else {
                 System.out.println("No se encuentra el usuario");
@@ -88,12 +114,12 @@ public class UserDAO {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            ps = con.prepareStatement(SQL_SELECT_ID);
-            ps.setInt(1, user.getIdUser());
+            ps = con.prepareStatement(SQL_SELECT_USERNAME);
+            ps.setString(1, user.getUsername());
             rs = ps.executeQuery();
             LinkedList<User> resultados = getResults(rs);
             if(resultados.size() > 0) {
-	    System.out.println("Ya existe un alumno asociado con ese numero de boleta.\n");
+	    System.out.println("Ya existe un usuario con ese username\n");
             }
             else {
                 ps = con.prepareStatement(SQL_INSERT);
@@ -105,7 +131,7 @@ public class UserDAO {
                 ps.setString(6, user.getPassword());		
                 ps.setInt(7, user.getUserType());
                 ps.executeUpdate();
-		System.out.println("El usuario se insertó correctamente\n");
+		System.out.println("El usuario "+user+"se insertó correctamente\n");
             }
         } finally {
             if(ps != null)
@@ -145,7 +171,7 @@ public class UserDAO {
         }
     }
     
-    public void update(User user, Connection con) throws SQLException {
+    public int update(User user, Connection con) throws SQLException {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -166,8 +192,12 @@ public class UserDAO {
                 ps.setInt(8, user.getIdUser());
                 ps.executeUpdate();
 		System.out.println("El usuario se ha actualizado");
+                return 0;
             }
-            else { System.out.println("El usuario " + user.getIdUser()+ " no existe"); }
+            else { 
+                System.out.println("El usuario " + user.getIdUser()+ " no existe"); 
+                return 1;
+            }
         } finally {
             if(ps != null)
                 ps.close();
@@ -235,7 +265,7 @@ public class UserDAO {
         }
     }
 
-    LinkedList<User> selectUser(String search, Connection con) throws SQLException {
+    LinkedList<User> searchUser(String search, Connection con) throws SQLException {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {

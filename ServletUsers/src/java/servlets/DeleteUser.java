@@ -22,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author azu
  */
-@WebServlet(name = "Login", urlPatterns = {"/login"})
-public class Login extends HttpServlet {
+@WebServlet(name = "DeleteUser", urlPatterns = {"/DeleteUser"})
+public class DeleteUser extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,28 +42,22 @@ public class Login extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>\n" +
 "    <head>\n" +
-"        <title>Inicio de sesi&oacute;n</title>\n" +
+"        <title>Eliminar usuario</title>\n" +
 "        <meta charset=\"UTF-8\">\n" +
 "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" +
 "        <link rel=\"stylesheet\" href=\"styles/principal.css\" title=\"Estilo principal\"/>\n" +
 "    </head>\n" +
 "    <body>\n" +
 "        <div id=\"menubar\">\n" +
-"            \n" +
-"        </div>\n" +
-"        <div id=\"title\">\n" +
-"            <h1>Sistema de administración de usuarios</h1>\n" +
+"            <ul>\n" +
+"                <li><a href=\"ManageUsers?search=\">Búsqueda de usuarios</a></li>\n" +
+"                <li><a href=\"SignUp.jsp\">Registrar nuevo usuario</a></li>\n" +
+"                <li><a href=\"index.jsp\">Cerrar sesión</a></li>\n" +
+"            </ul>\n" +
 "        </div>\n" +
 "        <div id=\"content\">\n" +
-"            <h1>Inicio de sesi&oacute;n</h1>\n" +
-"            <form id=\"login\" name=\"login\" method=\"post\" action=\"login\" class=\"formulario\">\n" +
-"                <label for=\"username\">Nombre de usuario</label>\n" +
-"                <input type=\"text\" name=\"username\" maxlength=\"40\"><br>\n" +
-"                <label for=\"password\">Contrase&ntilde;a</label>\n" +
-"                <input type=\"password\" name=\"password\"><br>\n" +
-"                <input id=\"enviar\" type=\"submit\" class=\"button\" value=\"Iniciar sesión\"/>\n" +
-"            </form>            \n" +
-"            <p>Usuario o contraseña incorrectos</p>" +                    
+"            <h1>Eliminar usuario</h1>\n" +
+"            <p>No fue posible eliminar el usuario</p>" +
 "        </div>\n" +
 "    </body>\n" +
 "</html>");
@@ -82,6 +76,19 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int idUser = Integer.parseInt(request.getParameter("idUser"));
+        UserDelegate finder = new UserDelegate();
+        UserDelegate manager = new UserDelegate();
+        User user = null; 
+        try {
+            user = finder.selectUserById(idUser);
+            manager.deleteUser(user);
+            System.out.println("Erased");
+            response.sendRedirect("ManageUsers?search=");
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DeleteUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
         processRequest(request, response);
     }
 
@@ -96,22 +103,7 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username = request.getParameter("username");
-        String password= request.getParameter("password");
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        UserDelegate manager = new UserDelegate();
-        try {
-            if(manager.login(user)){
-                response.sendRedirect("ManageUsers");
-            } else {
-                processRequest(request, response);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        processRequest(request, response);
     }
 
     /**
@@ -121,7 +113,7 @@ public class Login extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "User login";
+        return "Short description";
     }// </editor-fold>
 
 }

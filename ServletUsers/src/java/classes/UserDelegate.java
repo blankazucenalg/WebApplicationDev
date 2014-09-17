@@ -42,9 +42,14 @@ public class UserDelegate {
         System.out.println("\n" + "*************************" + "\n");
     }
     
-    public LinkedList<User> selectUser(User user) throws SQLException {
+    public LinkedList<User> selectUserByUsername(User user) throws SQLException {
         System.out.println("Select user from database");
-        return userDao.selectUser(user, connection);
+        return userDao.selectUserByUsername(user, connection);
+    }
+    
+    public User selectUserById(int IdUser) throws SQLException {
+        System.out.println("Select user from database");
+        return userDao.selectUserById(IdUser, connection);
     }
     
     public LinkedList<User> selectAllUsers() throws SQLException {
@@ -62,9 +67,9 @@ public class UserDelegate {
         userDao.delete(user,connection);
     }
 
-    public void updateUser(User user) throws SQLException {
+    public int updateUser(User user) throws SQLException {
         System.out.println("Update user");
-        userDao.update(user, connection);
+        return userDao.update(user, connection);
     }
 
     public boolean login(User user) throws SQLException {
@@ -72,8 +77,8 @@ public class UserDelegate {
         return userDao.login(user,connection);
     }
 
-    public LinkedList<User> selectUser(String search) {
+    public LinkedList<User> searchUser(String search) throws SQLException {
         System.out.println("Select user from database");
-        return userDao.selectUser(search, connection);
+        return userDao.searchUser(search, connection);
     }
 }

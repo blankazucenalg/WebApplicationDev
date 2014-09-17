@@ -23,7 +23,7 @@
         </div>
         <div id="content">
             <h1>Inicio de sesi&oacute;n</h1>
-            <form id="login" name="login" method="post" action="login">
+            <form id="login" name="login" method="post" action="login" class="formulario">
                 <label for="username">Nombre de usuario</label>
                 <input type="text" name="username" maxlength="40"><br>
                 <label for="password">Contrase&ntilde;a</label>
