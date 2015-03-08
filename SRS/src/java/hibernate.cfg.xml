@@ -6,6 +6,19 @@
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/srs?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">n0m3l0s3</property>
+    <mapping class="entiendades.Pendiente"/>
+    <mapping class="entiendades.AlumnoHasPendienteId"/>
+    <mapping class="entiendades.Usuario"/>
+    <mapping class="entiendades.Estado"/>
+    <mapping class="entiendades.Curso"/>
+    <mapping class="entiendades.Direccion"/>
+    <mapping class="entiendades.Historico"/>
+    <mapping class="entiendades.Email"/>
+    <mapping class="entiendades.MunicipioId"/>
+    <mapping class="entiendades.Accion"/>
+    <mapping class="entiendades.Telefono"/>
+    <mapping class="entiendades.Municipio"/>
+    <mapping class="entiendades.Asignatura"/>
+    <mapping class="entiendades.AlumnoHasPendiente"/>
   </session-factory>
 </hibernate-configuration>
