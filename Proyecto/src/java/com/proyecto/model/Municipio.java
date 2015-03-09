@@ -1,4 +1,4 @@
-package com.proyecto.entidades;
+package com.proyecto.model;
 // Generated 8/03/2015 05:04:34 PM by Hibernate Tools 4.3.1
 
 
