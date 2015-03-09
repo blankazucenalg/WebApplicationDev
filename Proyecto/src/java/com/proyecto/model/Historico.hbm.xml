@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-mar-2015 17:07:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.proyecto.model.Historico" table="historico" catalog="srs" optimistic-lock="version">
+        <id name="idhistorico" type="java.lang.Integer">
+            <column name="idhistorico" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="accion" class="com.proyecto.model.Accion" fetch="select">
+            <column name="idaccion" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuario" class="com.proyecto.model.Usuario" fetch="select">
+            <column name="idusuario" not-null="true" />
+        </many-to-one>
+        <property name="fecha" type="date">
+            <column name="fecha" length="10" not-null="true" />
+        </property>
+        <property name="detalle" type="string">
+            <column name="detalle" length="80" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

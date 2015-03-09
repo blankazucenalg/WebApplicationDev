@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-mar-2015 17:07:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.proyecto.model.Usuario" table="usuario" catalog="srs" optimistic-lock="version">
+        <id name="idusuario" type="java.lang.Integer">
+            <column name="idusuario" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="80" not-null="true" />
+        </property>
+        <property name="paterno" type="string">
+            <column name="paterno" length="60" />
+        </property>
+        <property name="materno" type="string">
+            <column name="materno" length="60" />
+        </property>
+        <property name="usuario" type="string">
+            <column name="usuario" length="45" not-null="true" unique="true" />
+        </property>
+        <property name="clave" type="string">
+            <column name="clave" length="45" not-null="true" />
+        </property>
+        <property name="rol" type="int">
+            <column name="rol" not-null="true" />
+        </property>
+        <property name="fecha" type="date">
+            <column name="fecha" length="10" not-null="true" />
+        </property>
+        <set name="emails" table="email" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idusuario" not-null="true" />
+            </key>
+            <one-to-many class="com.proyecto.model.Email" />
+        </set>
+        <set name="telefonos" table="telefono" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idusuario" not-null="true" />
+            </key>
+            <one-to-many class="com.proyecto.model.Telefono" />
+        </set>
+        <set name="historicos" table="historico" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idusuario" not-null="true" />
+            </key>
+            <one-to-many class="com.proyecto.model.Historico" />
+        </set>
+        <set name="cursos" table="curso" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idinstructor" not-null="true" />
+            </key>
+            <one-to-many class="com.proyecto.model.Curso" />
+        </set>
+        <set name="alumnoTienePendientes" table="alumno_tiene_pendiente" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idalumno" not-null="true" />
+            </key>
+            <one-to-many class="com.proyecto.model.AlumnoTienePendiente" />
+        </set>
+        <set name="direccions" table="direccion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idusuario" not-null="true" />
+            </key>
+            <one-to-many class="com.proyecto.model.Direccion" />
+        </set>
+    </class>
+</hibernate-mapping>
