@@ -6,19 +6,20 @@
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/srs?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
-    <mapping class="com.proyecto.entidades.AlumnoHasPendiente"/>
-    <mapping class="com.proyecto.entidades.Direccion"/>
-    <mapping class="com.proyecto.entidades.AlumnoHasPendienteId"/>
-    <mapping class="com.proyecto.entidades.Historico"/>
-    <mapping class="com.proyecto.entidades.Estado"/>
-    <mapping class="com.proyecto.entidades.Municipio"/>
-    <mapping class="com.proyecto.entidades.Email"/>
-    <mapping class="com.proyecto.entidades.Usuario"/>
-    <mapping class="com.proyecto.entidades.Asignatura"/>
-    <mapping class="com.proyecto.entidades.Accion"/>
-    <mapping class="com.proyecto.entidades.MunicipioId"/>
-    <mapping class="com.proyecto.entidades.Telefono"/>
-    <mapping class="com.proyecto.entidades.Curso"/>
-    <mapping class="com.proyecto.entidades.Pendiente"/>
+    <property name="hibernate.connection.password">n0m3l0s3</property>
+    <mapping class="com.proyecto.model.Pendiente"/>
+    <mapping class="com.proyecto.model.AlumnoTienePendienteId"/>
+    <mapping class="com.proyecto.model.Usuario"/>
+    <mapping class="com.proyecto.model.AlumnoTienePendiente"/>
+    <mapping class="com.proyecto.model.Email"/>
+    <mapping class="com.proyecto.model.Asignatura"/>
+    <mapping class="com.proyecto.model.Curso"/>
+    <mapping class="com.proyecto.model.Telefono"/>
+    <mapping class="com.proyecto.model.Direccion"/>
+    <mapping class="com.proyecto.model.Municipio"/>
+    <mapping class="com.proyecto.model.Estado"/>
+    <mapping class="com.proyecto.model.Accion"/>
+    <mapping class="com.proyecto.model.Historico"/>
+    <mapping class="com.proyecto.model.Archivo"/>
   </session-factory>
 </hibernate-configuration>

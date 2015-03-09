@@ -1,5 +1,5 @@
 package com.proyecto.model;
-// Generated 8/03/2015 05:04:34 PM by Hibernate Tools 4.3.1
+// Generated 09-mar-2015 16:13:19 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -66,9 +65,7 @@ public class Direccion  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumns( { 
-        @JoinColumn(name="municipio_idmunicipio", referencedColumnName="idmunicipio", nullable=false), 
-        @JoinColumn(name="municipio_estado_idestado", referencedColumnName="estado_idestado", nullable=false) } )
+    @JoinColumn(name="idmunicipio", nullable=false)
     public Municipio getMunicipio() {
         return this.municipio;
     }
@@ -78,7 +75,7 @@ public class Direccion  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="usuario_iduser", nullable=false)
+    @JoinColumn(name="idusuario", nullable=false)
     public Usuario getUsuario() {
         return this.usuario;
     }

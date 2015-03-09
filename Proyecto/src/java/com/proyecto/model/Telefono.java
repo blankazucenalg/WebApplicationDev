@@ -1,5 +1,5 @@
 package com.proyecto.model;
-// Generated 8/03/2015 05:04:34 PM by Hibernate Tools 4.3.1
+// Generated 09-mar-2015 16:13:19 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -47,7 +47,7 @@ public class Telefono  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="usuario_iduser", nullable=false)
+    @JoinColumn(name="idusuario", nullable=false)
     public Usuario getUsuario() {
         return this.usuario;
     }

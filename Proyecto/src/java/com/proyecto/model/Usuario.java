@@ -1,5 +1,5 @@
 package com.proyecto.model;
-// Generated 8/03/2015 05:04:34 PM by Hibernate Tools 4.3.1
+// Generated 09-mar-2015 16:13:19 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -23,131 +23,133 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name="usuario"
     ,catalog="srs"
-    , uniqueConstraints = @UniqueConstraint(columnNames="username") 
+    , uniqueConstraints = @UniqueConstraint(columnNames="usuario") 
 )
 public class Usuario  implements java.io.Serializable {
 
 
-     private Integer iduser;
-     private String name;
-     private String lastname;
-     private String surname;
-     private String username;
-     private String password;
-     private int role;
-     private Date date;
+     private Integer idusuario;
+     private String nombre;
+     private String paterno;
+     private String materno;
+     private String usuario;
+     private String clave;
+     private int rol;
+     private Date fecha;
      private Set emails = new HashSet(0);
      private Set telefonos = new HashSet(0);
-     private Set alumnoHasPendientes = new HashSet(0);
-     private Set direccions = new HashSet(0);
+     private Set historicos = new HashSet(0);
      private Set cursos = new HashSet(0);
+     private Set alumnoTienePendientes = new HashSet(0);
+     private Set direccions = new HashSet(0);
 
     public Usuario() {
     }
 
 	
-    public Usuario(String name, String username, String password, int role, Date date) {
-        this.name = name;
-        this.username = username;
-        this.password = password;
-        this.role = role;
-        this.date = date;
+    public Usuario(String nombre, String usuario, String clave, int rol, Date fecha) {
+        this.nombre = nombre;
+        this.usuario = usuario;
+        this.clave = clave;
+        this.rol = rol;
+        this.fecha = fecha;
     }
-    public Usuario(String name, String lastname, String surname, String username, String password, int role, Date date, Set emails, Set telefonos, Set alumnoHasPendientes, Set direccions, Set cursos) {
-       this.name = name;
-       this.lastname = lastname;
-       this.surname = surname;
-       this.username = username;
-       this.password = password;
-       this.role = role;
-       this.date = date;
+    public Usuario(String nombre, String paterno, String materno, String usuario, String clave, int rol, Date fecha, Set emails, Set telefonos, Set historicos, Set cursos, Set alumnoTienePendientes, Set direccions) {
+       this.nombre = nombre;
+       this.paterno = paterno;
+       this.materno = materno;
+       this.usuario = usuario;
+       this.clave = clave;
+       this.rol = rol;
+       this.fecha = fecha;
        this.emails = emails;
        this.telefonos = telefonos;
-       this.alumnoHasPendientes = alumnoHasPendientes;
-       this.direccions = direccions;
+       this.historicos = historicos;
        this.cursos = cursos;
+       this.alumnoTienePendientes = alumnoTienePendientes;
+       this.direccions = direccions;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
 
     
-    @Column(name="iduser", unique=true, nullable=false)
-    public Integer getIduser() {
-        return this.iduser;
+    @Column(name="idusuario", unique=true, nullable=false)
+    public Integer getIdusuario() {
+        return this.idusuario;
     }
     
-    public void setIduser(Integer iduser) {
-        this.iduser = iduser;
-    }
-
-    
-    @Column(name="name", nullable=false, length=80)
-    public String getName() {
-        return this.name;
-    }
-    
-    public void setName(String name) {
-        this.name = name;
+    public void setIdusuario(Integer idusuario) {
+        this.idusuario = idusuario;
     }
 
     
-    @Column(name="lastname", length=60)
-    public String getLastname() {
-        return this.lastname;
+    @Column(name="nombre", nullable=false, length=80)
+    public String getNombre() {
+        return this.nombre;
     }
     
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    
-    @Column(name="surname", length=60)
-    public String getSurname() {
-        return this.surname;
-    }
-    
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     
-    @Column(name="username", unique=true, nullable=false, length=45)
-    public String getUsername() {
-        return this.username;
+    @Column(name="paterno", length=60)
+    public String getPaterno() {
+        return this.paterno;
     }
     
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    
-    @Column(name="password", nullable=false, length=45)
-    public String getPassword() {
-        return this.password;
-    }
-    
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPaterno(String paterno) {
+        this.paterno = paterno;
     }
 
     
-    @Column(name="role", nullable=false)
-    public int getRole() {
-        return this.role;
+    @Column(name="materno", length=60)
+    public String getMaterno() {
+        return this.materno;
     }
     
-    public void setRole(int role) {
-        this.role = role;
+    public void setMaterno(String materno) {
+        this.materno = materno;
+    }
+
+    
+    @Column(name="usuario", unique=true, nullable=false, length=45)
+    public String getUsuario() {
+        return this.usuario;
+    }
+    
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    
+    @Column(name="clave", nullable=false, length=45)
+    public String getClave() {
+        return this.clave;
+    }
+    
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
+
+    
+    @Column(name="rol", nullable=false)
+    public int getRol() {
+        return this.rol;
+    }
+    
+    public void setRol(int rol) {
+        this.rol = rol;
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name="date", nullable=false, length=0)
-    public Date getDate() {
-        return this.date;
+    @Column(name="fecha", nullable=false, length=10)
+    public Date getFecha() {
+        return this.fecha;
     }
     
-    public void setDate(Date date) {
-        this.date = date;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="usuario")
@@ -169,21 +171,12 @@ public class Usuario  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="usuario")
-    public Set getAlumnoHasPendientes() {
-        return this.alumnoHasPendientes;
+    public Set getHistoricos() {
+        return this.historicos;
     }
     
-    public void setAlumnoHasPendientes(Set alumnoHasPendientes) {
-        this.alumnoHasPendientes = alumnoHasPendientes;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="usuario")
-    public Set getDireccions() {
-        return this.direccions;
-    }
-    
-    public void setDireccions(Set direccions) {
-        this.direccions = direccions;
+    public void setHistoricos(Set historicos) {
+        this.historicos = historicos;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="usuario")
@@ -193,6 +186,24 @@ public class Usuario  implements java.io.Serializable {
     
     public void setCursos(Set cursos) {
         this.cursos = cursos;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="usuario")
+    public Set getAlumnoTienePendientes() {
+        return this.alumnoTienePendientes;
+    }
+    
+    public void setAlumnoTienePendientes(Set alumnoTienePendientes) {
+        this.alumnoTienePendientes = alumnoTienePendientes;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="usuario")
+    public Set getDireccions() {
+        return this.direccions;
+    }
+    
+    public void setDireccions(Set direccions) {
+        this.direccions = direccions;
     }
 
 

@@ -1,5 +1,5 @@
 package com.proyecto.model;
-// Generated 8/03/2015 05:04:34 PM by Hibernate Tools 4.3.1
+// Generated 09-mar-2015 16:13:19 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -27,14 +27,16 @@ public class Historico  implements java.io.Serializable {
 
      private Integer idhistorico;
      private Accion accion;
+     private Usuario usuario;
      private Date fecha;
      private String detalle;
 
     public Historico() {
     }
 
-    public Historico(Accion accion, Date fecha, String detalle) {
+    public Historico(Accion accion, Usuario usuario, Date fecha, String detalle) {
        this.accion = accion;
+       this.usuario = usuario;
        this.fecha = fecha;
        this.detalle = detalle;
     }
@@ -52,7 +54,7 @@ public class Historico  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="accion_idaccion", nullable=false)
+    @JoinColumn(name="idaccion", nullable=false)
     public Accion getAccion() {
         return this.accion;
     }
@@ -61,8 +63,18 @@ public class Historico  implements java.io.Serializable {
         this.accion = accion;
     }
 
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="idusuario", nullable=false)
+    public Usuario getUsuario() {
+        return this.usuario;
+    }
+    
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     @Temporal(TemporalType.DATE)
-    @Column(name="fecha", nullable=false, length=0)
+    @Column(name="fecha", nullable=false, length=10)
     public Date getFecha() {
         return this.fecha;
     }

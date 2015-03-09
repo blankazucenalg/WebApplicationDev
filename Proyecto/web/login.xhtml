@@ -33,10 +33,10 @@
                                 <p:inputText id="username" autocomplete="true"/>
 
                                 <h:outputText value="Contraseña" />
-                                <p:password id="password" value="#{passwordView.password2}" feedback="false" />
+                                <p:password id="password" feedback="false" />
                                 
                                 <h:column/>
-                                <p:commandButton style="width: 210px;" value="Iniciar sesión" id="login_btn" actionListener="#{buttonView.buttonAction}" ajax="false" />
+                                <p:commandButton style="width: 210px;" value="Iniciar sesión" id="login_btn" action="faces/index.xhtml" ajax="false" />
                             </h:panelGrid>
                             </p:panel>
 

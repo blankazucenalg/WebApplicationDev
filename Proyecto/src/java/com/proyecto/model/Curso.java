@@ -1,5 +1,5 @@
 package com.proyecto.model;
-// Generated 8/03/2015 05:04:34 PM by Hibernate Tools 4.3.1
+// Generated 09-mar-2015 16:13:19 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -77,7 +77,7 @@ public class Curso  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="asignatura_idasignatura", nullable=false)
+    @JoinColumn(name="idasignatura", nullable=false)
     public Asignatura getAsignatura() {
         return this.asignatura;
     }
@@ -87,7 +87,7 @@ public class Curso  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="usuario_idinstructor", nullable=false)
+    @JoinColumn(name="idinstructor", nullable=false)
     public Usuario getUsuario() {
         return this.usuario;
     }
@@ -107,7 +107,7 @@ public class Curso  implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name="fecha_inicio", nullable=false, length=0)
+    @Column(name="fecha_inicio", nullable=false, length=10)
     public Date getFechaInicio() {
         return this.fechaInicio;
     }

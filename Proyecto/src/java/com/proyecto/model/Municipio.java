@@ -1,15 +1,15 @@
 package com.proyecto.model;
-// Generated 8/03/2015 05:04:34 PM by Hibernate Tools 4.3.1
+// Generated 09-mar-2015 16:13:19 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -25,7 +25,7 @@ import javax.persistence.Table;
 public class Municipio  implements java.io.Serializable {
 
 
-     private MunicipioId id;
+     private Integer idmunicipio;
      private Estado estado;
      private String nombre;
      private Set direccions = new HashSet(0);
@@ -34,34 +34,30 @@ public class Municipio  implements java.io.Serializable {
     }
 
 	
-    public Municipio(MunicipioId id, Estado estado, String nombre) {
-        this.id = id;
+    public Municipio(Estado estado, String nombre) {
         this.estado = estado;
         this.nombre = nombre;
     }
-    public Municipio(MunicipioId id, Estado estado, String nombre, Set direccions) {
-       this.id = id;
+    public Municipio(Estado estado, String nombre, Set direccions) {
        this.estado = estado;
        this.nombre = nombre;
        this.direccions = direccions;
     }
    
-     @EmbeddedId
+     @Id @GeneratedValue(strategy=IDENTITY)
 
     
-    @AttributeOverrides( {
-        @AttributeOverride(name="idmunicipio", column=@Column(name="idmunicipio", nullable=false) ), 
-        @AttributeOverride(name="estadoIdestado", column=@Column(name="estado_idestado", nullable=false) ) } )
-    public MunicipioId getId() {
-        return this.id;
+    @Column(name="idmunicipio", unique=true, nullable=false)
+    public Integer getIdmunicipio() {
+        return this.idmunicipio;
     }
     
-    public void setId(MunicipioId id) {
-        this.id = id;
+    public void setIdmunicipio(Integer idmunicipio) {
+        this.idmunicipio = idmunicipio;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="estado_idestado", nullable=false, insertable=false, updatable=false)
+    @JoinColumn(name="idestado", nullable=false)
     public Estado getEstado() {
         return this.estado;
     }

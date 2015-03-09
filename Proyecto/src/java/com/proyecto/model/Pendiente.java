@@ -1,5 +1,5 @@
 package com.proyecto.model;
-// Generated 8/03/2015 05:04:34 PM by Hibernate Tools 4.3.1
+// Generated 09-mar-2015 16:13:19 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -32,7 +32,7 @@ public class Pendiente  implements java.io.Serializable {
      private Curso curso;
      private String nombre;
      private Date fechaEntrega;
-     private Set alumnoHasPendientes = new HashSet(0);
+     private Set alumnoTienePendientes = new HashSet(0);
 
     public Pendiente() {
     }
@@ -43,11 +43,11 @@ public class Pendiente  implements java.io.Serializable {
         this.nombre = nombre;
         this.fechaEntrega = fechaEntrega;
     }
-    public Pendiente(Curso curso, String nombre, Date fechaEntrega, Set alumnoHasPendientes) {
+    public Pendiente(Curso curso, String nombre, Date fechaEntrega, Set alumnoTienePendientes) {
        this.curso = curso;
        this.nombre = nombre;
        this.fechaEntrega = fechaEntrega;
-       this.alumnoHasPendientes = alumnoHasPendientes;
+       this.alumnoTienePendientes = alumnoTienePendientes;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -63,7 +63,7 @@ public class Pendiente  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="curso", nullable=false)
+    @JoinColumn(name="idcurso", nullable=false)
     public Curso getCurso() {
         return this.curso;
     }
@@ -83,7 +83,7 @@ public class Pendiente  implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name="fecha_entrega", nullable=false, length=0)
+    @Column(name="fecha_entrega", nullable=false, length=10)
     public Date getFechaEntrega() {
         return this.fechaEntrega;
     }
@@ -93,12 +93,12 @@ public class Pendiente  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="pendiente")
-    public Set getAlumnoHasPendientes() {
-        return this.alumnoHasPendientes;
+    public Set getAlumnoTienePendientes() {
+        return this.alumnoTienePendientes;
     }
     
-    public void setAlumnoHasPendientes(Set alumnoHasPendientes) {
-        this.alumnoHasPendientes = alumnoHasPendientes;
+    public void setAlumnoTienePendientes(Set alumnoTienePendientes) {
+        this.alumnoTienePendientes = alumnoTienePendientes;
     }
 
 
