@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="center" resizable="true" closable="false" collapsible="false">
+                    <p:menubar>
+                        <p:menuitem value="Usuarios " url="users.xhtml"/>
+                        <p:menuitem value="Alumnos " url="students.xhtml" />
+                        <p:menuitem value="Cursos " url="courses.xhtml" />
+                        <p:menuitem value="Sistema " url="system.xhtml" />
+                        <p:submenu label="Mi cuenta ">
+                            <p:menuitem value="Mi cuenta" url="account.xhtml"/>
+                            <p:menuitem value="Cerrar sesión" url="login.xhtml"/>
+                        </p:submenu>
+                    </p:menubar>
+
+                    <p:panel>
+                        <h:form id="formulario">
+                            <p:growl id="msgs" showDetail="true" />
+                            <p:fieldset legend="Datos Del Curso" style="margin-bottom:20px">
+                                <h:panelGrid  columns="6" cellpadding="6"  >
+                                <p:outputLabel for="namecurso" value="Nombre Del Curso:"></p:outputLabel>
+                                <p:inputText id="namecurso" value="" required="true">
+                                    <f:validateLength minimum="20" />
+                                </p:inputText>
+
+                                <p:outputLabel  value="Instructor: " />
+                                <p:selectOneMenu id="Instructor" value="" style="width:155px">
+                                    
+                                    
+                                </p:selectOneMenu>
+
+                                <p:outputLabel value="Fecha Inicio:"></p:outputLabel>
+                                <p:inputText type="date" value="" required="true">
+                                    <f:validateLength minimum="20" />
+                                </p:inputText>
+                                 <p:outputLabel value="Fecha Término:"></p:outputLabel>
+                                <p:inputText type="date" value="" required="true">
+                                    <f:validateLength minimum="20" />
+                                </p:inputText>
+                                 <p:outputLabel value="Ubicación:"></p:outputLabel>
+                                <p:inputText type="text" value="" required="true">
+                                    <f:validateLength minimum="20" />
+                                </p:inputText>
+                                 <p:outputLabel value="Horario:"></p:outputLabel>
+                                <p:inputText type="text" value="" required="true">
+                                    <f:validateLength minimum="20" />
+                                </p:inputText>
+                                   <p:outputLabel value="Precio:"></p:outputLabel>
+                                <p:inputText type="text" value="" required="true">
+                                    <f:validateLength minimum="20" />
+                                </p:inputText>
+                            </h:panelGrid>
+                                </p:fieldset>
+                            
+                            
+                             
+                    
+                        </h:form>
+                    </p:panel>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="30" closable="true" collapsible="true" style="font-size: 13px;" >
+                    <center>Escuela Superior de Cómputo - 2015. Instituto Politécnico Nacional</center>
+                </p:layoutUnit>
+
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+

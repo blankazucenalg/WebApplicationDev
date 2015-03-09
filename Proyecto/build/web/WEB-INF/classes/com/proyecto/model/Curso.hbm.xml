@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-mar-2015 17:07:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.proyecto.model.Curso" table="curso" catalog="srs" optimistic-lock="version">
+        <id name="idcurso" type="java.lang.Integer">
+            <column name="idcurso" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="asignatura" class="com.proyecto.model.Asignatura" fetch="select">
+            <column name="idasignatura" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuario" class="com.proyecto.model.Usuario" fetch="select">
+            <column name="idinstructor" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" not-null="true" />
+        </property>
+        <property name="fechaInicio" type="date">
+            <column name="fecha_inicio" length="10" not-null="true" />
+        </property>
+        <property name="fechaFin" type="string">
+            <column name="fecha_fin" length="45" />
+        </property>
+        <property name="ubicacion" type="string">
+            <column name="ubicacion" length="50" not-null="true" />
+        </property>
+        <property name="horario" type="string">
+            <column name="horario" length="45" not-null="true" />
+        </property>
+        <property name="precio" type="float">
+            <column name="precio" precision="12" scale="0" not-null="true" />
+        </property>
+        <set name="pendientes" table="pendiente" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idcurso" not-null="true" />
+            </key>
+            <one-to-many class="com.proyecto.model.Pendiente" />
+        </set>
+    </class>
+</hibernate-mapping>

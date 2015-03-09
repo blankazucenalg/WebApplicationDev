@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-mar-2015 17:07:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.proyecto.model.Archivo" table="archivo" catalog="srs" optimistic-lock="version">
+        <id name="idarchivo" type="java.lang.Integer">
+            <column name="idarchivo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="alumnoTienePendiente" class="com.proyecto.model.AlumnoTienePendiente" fetch="select">
+            <column name="idalumno" not-null="true" />
+            <column name="idpendiente" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" not-null="true" />
+        </property>
+        <property name="ubicacion" type="string">
+            <column name="ubicacion" length="100" not-null="true" unique="true" />
+        </property>
+    </class>
+</hibernate-mapping>

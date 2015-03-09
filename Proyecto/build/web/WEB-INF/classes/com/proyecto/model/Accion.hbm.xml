@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-mar-2015 17:07:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.proyecto.model.Accion" table="accion" catalog="srs" optimistic-lock="version">
+        <id name="idaccion" type="java.lang.Integer">
+            <column name="idaccion" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" not-null="true" unique="true" />
+        </property>
+        <set name="historicos" table="historico" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idaccion" not-null="true" />
+            </key>
+            <one-to-many class="com.proyecto.model.Historico" />
+        </set>
+    </class>
+</hibernate-mapping>

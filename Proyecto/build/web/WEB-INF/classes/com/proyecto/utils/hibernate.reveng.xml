@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="srs"/>
+  <table-filter match-name="telefono"/>
+  <table-filter match-name="asignatura"/>
+  <table-filter match-name="alumno_tiene_pendiente"/>
+  <table-filter match-name="accion"/>
+  <table-filter match-name="estado"/>
+  <table-filter match-name="email"/>
+  <table-filter match-name="archivo"/>
+  <table-filter match-name="curso"/>
+  <table-filter match-name="municipio"/>
+  <table-filter match-name="usuario"/>
+  <table-filter match-name="direccion"/>
+  <table-filter match-name="historico"/>
+  <table-filter match-name="pendiente"/>
+</hibernate-reverse-engineering>

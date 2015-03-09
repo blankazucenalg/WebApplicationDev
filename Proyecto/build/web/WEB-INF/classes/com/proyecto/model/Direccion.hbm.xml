@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 09-mar-2015 17:07:35 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.proyecto.model.Direccion" table="direccion" catalog="srs" optimistic-lock="version">
+        <id name="iddireccion" type="java.lang.Integer">
+            <column name="iddireccion" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="municipio" class="com.proyecto.model.Municipio" fetch="select">
+            <column name="idmunicipio" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usuario" class="com.proyecto.model.Usuario" fetch="select">
+            <column name="idusuario" not-null="true" />
+        </many-to-one>
+        <property name="calle" type="string">
+            <column name="calle" length="45" not-null="true" />
+        </property>
+        <property name="noExterior" type="string">
+            <column name="no_exterior" length="45" />
+        </property>
+        <property name="noInterior" type="string">
+            <column name="no_interior" length="45" />
+        </property>
+        <property name="colonia" type="string">
+            <column name="colonia" length="45" not-null="true" />
+        </property>
+        <property name="cp" type="string">
+            <column name="cp" length="45" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
