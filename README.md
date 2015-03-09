@@ -3,6 +3,17 @@ WebApplicationDev
 
 Web Application Development sources
 
-Language: Java 7u65
-Java Swing
-Java Servlets
+**Languages**
+* Java 7u65
+* HTML
+* CSS
+* Javascript
+
+**Tecnologies**
+* Java Servlets
+* Java Server Pages
+* Java Server Faces 2.2
+* Primefaces 5
+* JPA
+* Hibernate
+* Struts 
