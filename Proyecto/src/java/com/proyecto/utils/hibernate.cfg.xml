@@ -7,19 +7,18 @@
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/srs?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">n0m3l0s3</property>
-    <mapping class="com.proyecto.model.Pendiente"/>
-    <mapping class="com.proyecto.model.AlumnoTienePendienteId"/>
-    <mapping class="com.proyecto.model.Usuario"/>
-    <mapping class="com.proyecto.model.AlumnoTienePendiente"/>
-    <mapping class="com.proyecto.model.Email"/>
-    <mapping class="com.proyecto.model.Asignatura"/>
-    <mapping class="com.proyecto.model.Curso"/>
-    <mapping class="com.proyecto.model.Telefono"/>
-    <mapping class="com.proyecto.model.Direccion"/>
-    <mapping class="com.proyecto.model.Municipio"/>
-    <mapping class="com.proyecto.model.Estado"/>
-    <mapping class="com.proyecto.model.Accion"/>
-    <mapping class="com.proyecto.model.Historico"/>
-    <mapping class="com.proyecto.model.Archivo"/>
+    <mapping resource="com/proyecto/model/Email.hbm.xml"/>
+    <mapping resource="com/proyecto/model/Municipio.hbm.xml"/>
+    <mapping resource="com/proyecto/model/Accion.hbm.xml"/>
+    <mapping resource="com/proyecto/model/Direccion.hbm.xml"/>
+    <mapping resource="com/proyecto/model/Usuario.hbm.xml"/>
+    <mapping resource="com/proyecto/model/Estado.hbm.xml"/>
+    <mapping resource="com/proyecto/model/Asignatura.hbm.xml"/>
+    <mapping resource="com/proyecto/model/Archivo.hbm.xml"/>
+    <mapping resource="com/proyecto/model/Curso.hbm.xml"/>
+    <mapping resource="com/proyecto/model/Historico.hbm.xml"/>
+    <mapping resource="com/proyecto/model/AlumnoTienePendiente.hbm.xml"/>
+    <mapping resource="com/proyecto/model/Pendiente.hbm.xml"/>
+    <mapping resource="com/proyecto/model/Telefono.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
