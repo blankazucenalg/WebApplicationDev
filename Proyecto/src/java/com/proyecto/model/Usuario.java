@@ -1,5 +1,5 @@
 package com.proyecto.model;
-// Generated 09-mar-2015 17:07:35 by Hibernate Tools 4.3.1
+// Generated 10-mar-2015 15:08:19 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -20,6 +20,7 @@ public class Usuario  implements java.io.Serializable {
      private String clave;
      private int rol;
      private Date fecha;
+     private byte estado;
      private Set<Email> emails = new HashSet<Email>(0);
      private Set<Telefono> telefonos = new HashSet<Telefono>(0);
      private Set<Historico> historicos = new HashSet<Historico>(0);
@@ -31,14 +32,15 @@ public class Usuario  implements java.io.Serializable {
     }
 
 	
-    public Usuario(String nombre, String usuario, String clave, int rol, Date fecha) {
+    public Usuario(String nombre, String usuario, String clave, int rol, Date fecha, byte estado) {
         this.nombre = nombre;
         this.usuario = usuario;
         this.clave = clave;
         this.rol = rol;
         this.fecha = fecha;
+        this.estado = estado;
     }
-    public Usuario(String nombre, String paterno, String materno, String usuario, String clave, int rol, Date fecha, Set<Email> emails, Set<Telefono> telefonos, Set<Historico> historicos, Set<Curso> cursos, Set<AlumnoTienePendiente> alumnoTienePendientes, Set<Direccion> direccions) {
+    public Usuario(String nombre, String paterno, String materno, String usuario, String clave, int rol, Date fecha, byte estado, Set<Email> emails, Set<Telefono> telefonos, Set<Historico> historicos, Set<Curso> cursos, Set<AlumnoTienePendiente> alumnoTienePendientes, Set<Direccion> direccions) {
        this.nombre = nombre;
        this.paterno = paterno;
        this.materno = materno;
@@ -46,6 +48,7 @@ public class Usuario  implements java.io.Serializable {
        this.clave = clave;
        this.rol = rol;
        this.fecha = fecha;
+       this.estado = estado;
        this.emails = emails;
        this.telefonos = telefonos;
        this.historicos = historicos;
@@ -109,6 +112,13 @@ public class Usuario  implements java.io.Serializable {
     
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+    public byte getEstado() {
+        return this.estado;
+    }
+    
+    public void setEstado(byte estado) {
+        this.estado = estado;
     }
     public Set<Email> getEmails() {
         return this.emails;

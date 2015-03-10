@@ -1,5 +1,5 @@
 package com.proyecto.model;
-// Generated 09-mar-2015 17:07:35 by Hibernate Tools 4.3.1
+// Generated 10-mar-2015 15:08:19 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,36 +11,37 @@ import java.util.Set;
 public class AlumnoTienePendiente  implements java.io.Serializable {
 
 
-     private AlumnoTienePendienteId id;
+     private Integer idatp;
      private Pendiente pendiente;
      private Usuario usuario;
      private float calificacion;
+     private byte estado;
      private Set<Archivo> archivos = new HashSet<Archivo>(0);
 
     public AlumnoTienePendiente() {
     }
 
 	
-    public AlumnoTienePendiente(AlumnoTienePendienteId id, Pendiente pendiente, Usuario usuario, float calificacion) {
-        this.id = id;
+    public AlumnoTienePendiente(Pendiente pendiente, Usuario usuario, float calificacion, byte estado) {
         this.pendiente = pendiente;
         this.usuario = usuario;
         this.calificacion = calificacion;
+        this.estado = estado;
     }
-    public AlumnoTienePendiente(AlumnoTienePendienteId id, Pendiente pendiente, Usuario usuario, float calificacion, Set<Archivo> archivos) {
-       this.id = id;
+    public AlumnoTienePendiente(Pendiente pendiente, Usuario usuario, float calificacion, byte estado, Set<Archivo> archivos) {
        this.pendiente = pendiente;
        this.usuario = usuario;
        this.calificacion = calificacion;
+       this.estado = estado;
        this.archivos = archivos;
     }
    
-    public AlumnoTienePendienteId getId() {
-        return this.id;
+    public Integer getIdatp() {
+        return this.idatp;
     }
     
-    public void setId(AlumnoTienePendienteId id) {
-        this.id = id;
+    public void setIdatp(Integer idatp) {
+        this.idatp = idatp;
     }
     public Pendiente getPendiente() {
         return this.pendiente;
@@ -62,6 +63,13 @@ public class AlumnoTienePendiente  implements java.io.Serializable {
     
     public void setCalificacion(float calificacion) {
         this.calificacion = calificacion;
+    }
+    public byte getEstado() {
+        return this.estado;
+    }
+    
+    public void setEstado(byte estado) {
+        this.estado = estado;
     }
     public Set<Archivo> getArchivos() {
         return this.archivos;
