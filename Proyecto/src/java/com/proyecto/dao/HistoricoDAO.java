@@ -77,13 +77,13 @@ public class HistoricoDAO {
         return h;
     }
 
-    public Collection loadAll() throws Exception {
+    public Collection loadAll(int startID, int endID) throws Exception {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = session.getTransaction();
         List list = null;
         try {
             tx.begin();
-            Query q = session.createQuery("from Historico");
+            Query q = session.createQuery("from Historico as history where history.idhistorico between '"+startID+"' and '"+endID+"'");
             list = q.list();
             tx.commit();
         } catch (HibernateException he) {

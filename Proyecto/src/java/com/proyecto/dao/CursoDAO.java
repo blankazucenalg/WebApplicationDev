@@ -77,13 +77,13 @@ public class CursoDAO {
         return c;
     }
 
-    public Collection loadAll() throws Exception {
+    public Collection loadAll(int startID, int endID) throws Exception {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = session.getTransaction();
         List list = null;
         try {
             tx.begin();
-            Query q = session.createQuery("from Curso");
+            Query q = session.createQuery("from Curso as curso where curso.idcurso between '"+startID+"' and '"+endID+"'");
             list = q.list();
             tx.commit();
         } catch (HibernateException he) {

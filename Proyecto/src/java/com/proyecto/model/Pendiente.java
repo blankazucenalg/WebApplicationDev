@@ -1,5 +1,5 @@
 package com.proyecto.model;
-// Generated 10-mar-2015 15:08:19 by Hibernate Tools 4.3.1
+// Generated 10-mar-2015 17:06:19 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -16,20 +16,20 @@ public class Pendiente  implements java.io.Serializable {
      private Curso curso;
      private String nombre;
      private Date fechaEntrega;
-     private byte estado;
+     private int estado;
      private Set<AlumnoTienePendiente> alumnoTienePendientes = new HashSet<AlumnoTienePendiente>(0);
 
     public Pendiente() {
     }
 
 	
-    public Pendiente(Curso curso, String nombre, Date fechaEntrega, byte estado) {
+    public Pendiente(Curso curso, String nombre, Date fechaEntrega, int estado) {
         this.curso = curso;
         this.nombre = nombre;
         this.fechaEntrega = fechaEntrega;
         this.estado = estado;
     }
-    public Pendiente(Curso curso, String nombre, Date fechaEntrega, byte estado, Set<AlumnoTienePendiente> alumnoTienePendientes) {
+    public Pendiente(Curso curso, String nombre, Date fechaEntrega, int estado, Set<AlumnoTienePendiente> alumnoTienePendientes) {
        this.curso = curso;
        this.nombre = nombre;
        this.fechaEntrega = fechaEntrega;
@@ -65,11 +65,11 @@ public class Pendiente  implements java.io.Serializable {
     public void setFechaEntrega(Date fechaEntrega) {
         this.fechaEntrega = fechaEntrega;
     }
-    public byte getEstado() {
+    public int getEstado() {
         return this.estado;
     }
     
-    public void setEstado(byte estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
     public Set<AlumnoTienePendiente> getAlumnoTienePendientes() {

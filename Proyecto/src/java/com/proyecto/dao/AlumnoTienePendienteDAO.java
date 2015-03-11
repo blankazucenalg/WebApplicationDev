@@ -6,6 +6,7 @@
 package com.proyecto.dao;
 
 import com.proyecto.model.AlumnoTienePendiente;
+import com.proyecto.model.Usuario;
 import com.proyecto.utils.HibernateUtil;
 import java.util.Collection;
 import java.util.List;
@@ -67,7 +68,7 @@ public class AlumnoTienePendienteDAO {
         Transaction tx = session.getTransaction();
         try {
             tx.begin();
-            atp = (AlumnoTienePendiente) session.get(AlumnoTienePendiente.class, atp.getId());
+            atp = (AlumnoTienePendiente) session.get(AlumnoTienePendiente.class, atp.getIdatp());
             tx.commit();
         } catch (HibernateException he) {
             if (tx != null && tx.isActive()) {
@@ -77,13 +78,13 @@ public class AlumnoTienePendienteDAO {
         return atp;
     }
 
-    public Collection loadAll() throws Exception {
+    public Collection loadAllForUser(Usuario alumno) throws Exception {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = session.getTransaction();
         List list = null;
         try {
             tx.begin();
-            Query q = session.createQuery("from AlumnoTienePendiente");
+            Query q = session.createQuery("from AlumnoTienePendiente as atp where atp.usuario = "+alumno.getIdusuario());
             list = q.list();
             tx.commit();
         } catch (HibernateException he) {

@@ -1,5 +1,5 @@
 package com.proyecto.model;
-// Generated 10-mar-2015 15:08:19 by Hibernate Tools 4.3.1
+// Generated 10-mar-2015 17:06:19 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -15,20 +15,20 @@ public class AlumnoTienePendiente  implements java.io.Serializable {
      private Pendiente pendiente;
      private Usuario usuario;
      private float calificacion;
-     private byte estado;
+     private int estado;
      private Set<Archivo> archivos = new HashSet<Archivo>(0);
 
     public AlumnoTienePendiente() {
     }
 
 	
-    public AlumnoTienePendiente(Pendiente pendiente, Usuario usuario, float calificacion, byte estado) {
+    public AlumnoTienePendiente(Pendiente pendiente, Usuario usuario, float calificacion, int estado) {
         this.pendiente = pendiente;
         this.usuario = usuario;
         this.calificacion = calificacion;
         this.estado = estado;
     }
-    public AlumnoTienePendiente(Pendiente pendiente, Usuario usuario, float calificacion, byte estado, Set<Archivo> archivos) {
+    public AlumnoTienePendiente(Pendiente pendiente, Usuario usuario, float calificacion, int estado, Set<Archivo> archivos) {
        this.pendiente = pendiente;
        this.usuario = usuario;
        this.calificacion = calificacion;
@@ -64,11 +64,11 @@ public class AlumnoTienePendiente  implements java.io.Serializable {
     public void setCalificacion(float calificacion) {
         this.calificacion = calificacion;
     }
-    public byte getEstado() {
+    public int getEstado() {
         return this.estado;
     }
     
-    public void setEstado(byte estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
     public Set<Archivo> getArchivos() {

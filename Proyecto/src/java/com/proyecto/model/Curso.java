@@ -1,5 +1,5 @@
 package com.proyecto.model;
-// Generated 10-mar-2015 15:08:19 by Hibernate Tools 4.3.1
+// Generated 10-mar-2015 17:06:19 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -21,14 +21,14 @@ public class Curso  implements java.io.Serializable {
      private String ubicacion;
      private String horario;
      private float precio;
-     private byte estado;
+     private int estado;
      private Set<Pendiente> pendientes = new HashSet<Pendiente>(0);
 
     public Curso() {
     }
 
 	
-    public Curso(Asignatura asignatura, Usuario usuario, String nombre, Date fechaInicio, String ubicacion, String horario, float precio, byte estado) {
+    public Curso(Asignatura asignatura, Usuario usuario, String nombre, Date fechaInicio, String ubicacion, String horario, float precio, int estado) {
         this.asignatura = asignatura;
         this.usuario = usuario;
         this.nombre = nombre;
@@ -38,7 +38,7 @@ public class Curso  implements java.io.Serializable {
         this.precio = precio;
         this.estado = estado;
     }
-    public Curso(Asignatura asignatura, Usuario usuario, String nombre, Date fechaInicio, String fechaFin, String ubicacion, String horario, float precio, byte estado, Set<Pendiente> pendientes) {
+    public Curso(Asignatura asignatura, Usuario usuario, String nombre, Date fechaInicio, String fechaFin, String ubicacion, String horario, float precio, int estado, Set<Pendiente> pendientes) {
        this.asignatura = asignatura;
        this.usuario = usuario;
        this.nombre = nombre;
@@ -114,11 +114,11 @@ public class Curso  implements java.io.Serializable {
     public void setPrecio(float precio) {
         this.precio = precio;
     }
-    public byte getEstado() {
+    public int getEstado() {
         return this.estado;
     }
     
-    public void setEstado(byte estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
     public Set<Pendiente> getPendientes() {

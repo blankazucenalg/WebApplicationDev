@@ -40,7 +40,7 @@
 
                         </p:toolbar>
                     </h:form>
-<br/>
+                    <br/>
                     <h:form>     
                         <p:growl id="messages" showDetail="true" />
 
@@ -48,7 +48,8 @@
                             <f:facet name="left">
                                 <p:commandButton type="button" value="Reportes" icon="ui-icon-document" />
 
-                                <p:commandButton type="button" value="Nuevo usuario" icon="ui-icon-person" />
+                                <p:button outcome="form/user" value="Nuevo usuario" icon="ui-icon-person" />
+                                
                                 <span class="ui-separator">
                                     <span class="ui-icon ui-icon-grip-dotted-vertical" />
                                 </span>
@@ -64,28 +65,28 @@
                         </p:toolbar>
                     </h:form>
 
-                    <p:dataTable var="user" value="#{dtBasicView.users}" rows="20" paginator="true">
+                    <p:dataTable var="user" value="#{userController.users}" rows="20" paginator="true">
                         <p:column headerText="Nombre de usuario">
-                            <h:outputText value="#{user.username}" />
+                            <h:outputText value="#{user.usuario}" />
                         </p:column>
 
                         <p:column headerText="Nombre completo">
-                            <h:outputText value="#{user.name}" />
+                            <h:outputText value="#{user.nombre}" />
                         </p:column>
 
                         <p:column headerText="Rol">
-                            <h:outputText value="#{user.rol}" />
+                            <h:outputText value="#{userController.roles[user.rol] }" />
                         </p:column>
 
                         <p:column headerText="Fecha registro">
-                            <h:outputText value="#{user.date}" />
+                            <h:outputText value="#{user.fecha}" />
                         </p:column>
                         <p:column headerText="Acciones">
-                            <p:button outcome="user" icon="ui-icon-arrowrefresh-1-w" title="Icon Only">
-                                <f:param name="productId" value="#{user.id}" />
+                            <p:button outcome="form/user" icon="ui-icon-arrowrefresh-1-w" title="Visualizar">
+                                <f:param name="productId" value="#{user.idusuario}" />
                             </p:button>
-                            <p:button outcome="userdelete" icon="ui-icon-close" title="Icon Only">
-                                <f:param name="productId" value="#{user.id}" />
+                            <p:button outcome="users" icon="ui-icon-close" title="Eliminar">
+                                <f:param name="deleteUser" value="#{user.idusuario}" />
                             </p:button>
                         </p:column>
                     </p:dataTable>

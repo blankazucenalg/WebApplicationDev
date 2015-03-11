@@ -77,13 +77,13 @@ public class UsuarioDAO {
         return u;
     }
 
-    public Collection loadAll() throws Exception {
+    public Collection loadAll(int startID, int endID) throws Exception {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = session.getTransaction();
         List list = null;
         try {
             tx.begin();
-            Query q = session.createQuery("from Usuario");
+            Query q = session.createQuery("from Usuario as usuario where usuario.idusuario between '"+startID+"' and '"+endID+"'");
             list = q.list();
             tx.commit();
         } catch (HibernateException he) {

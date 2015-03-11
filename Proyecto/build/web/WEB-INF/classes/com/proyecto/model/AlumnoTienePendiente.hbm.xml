@@ -1,30 +1,28 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 09-mar-2015 17:07:35 by Hibernate Tools 4.3.1 -->
+<!-- Generated 10-mar-2015 17:06:20 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.proyecto.model.AlumnoTienePendiente" table="alumno_tiene_pendiente" catalog="srs" optimistic-lock="version">
-        <composite-id name="id" class="com.proyecto.model.AlumnoTienePendienteId">
-            <key-property name="idalumno" type="int">
-                <column name="idalumno" />
-            </key-property>
-            <key-property name="idpendiente" type="int">
-                <column name="idpendiente" />
-            </key-property>
-        </composite-id>
-        <many-to-one name="pendiente" class="com.proyecto.model.Pendiente" update="false" insert="false" fetch="select">
+        <id name="idatp" type="java.lang.Integer">
+            <column name="idatp" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="pendiente" class="com.proyecto.model.Pendiente" fetch="select">
             <column name="idpendiente" not-null="true" />
         </many-to-one>
-        <many-to-one name="usuario" class="com.proyecto.model.Usuario" update="false" insert="false" fetch="select">
+        <many-to-one name="usuario" class="com.proyecto.model.Usuario" fetch="select">
             <column name="idalumno" not-null="true" />
         </many-to-one>
         <property name="calificacion" type="float">
             <column name="calificacion" precision="12" scale="0" not-null="true" />
         </property>
+        <property name="estado" type="int">
+            <column name="estado" not-null="true" />
+        </property>
         <set name="archivos" table="archivo" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="idalumno" not-null="true" />
-                <column name="idpendiente" not-null="true" />
+                <column name="idatp" not-null="true" />
             </key>
             <one-to-many class="com.proyecto.model.Archivo" />
         </set>

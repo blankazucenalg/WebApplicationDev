@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 10-mar-2015 15:08:19 by Hibernate Tools 4.3.1 -->
+<!-- Generated 10-mar-2015 17:06:20 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.proyecto.model.Curso" table="curso" catalog="srs" optimistic-lock="version">
         <id name="idcurso" type="java.lang.Integer">
@@ -32,7 +32,7 @@
         <property name="precio" type="float">
             <column name="precio" precision="12" scale="0" not-null="true" />
         </property>
-        <property name="estado" type="byte">
+        <property name="estado" type="int">
             <column name="estado" not-null="true" />
         </property>
         <set name="pendientes" table="pendiente" inverse="true" lazy="true" fetch="select">

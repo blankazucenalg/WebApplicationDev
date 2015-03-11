@@ -41,13 +41,13 @@
                     </h:form>
                     <h3>Historial</h3>
                     <h:form>
-                        <p:dataList value="#{dataListView.cars3}" var="car" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated">
+                        <p:dataList value="#{historyController.history}" var="item" type="unordered" itemType="none" paginator="true" rows="10" styleClass="paginated">
                             <f:facet name="header">
                                 Ultimas acciones realizadas
                             </f:facet>
                             <p:commandLink update=":form:carDetail" oncomplete="PF('carDialog').show()" title="View Detail" styleClass="ui-icon ui-icon-search" style="float:left;margin-right:10px">
-                                <f:setPropertyActionListener value="#{car}" target="#{dataListView.selectedCar}" />
-                                <h:outputText value="#{car.brand}, #{car.year}" />
+                                <f:setPropertyActionListener value="#{item}" target="#{dataListView.selectedCar}" />
+                                <h:outputText value="#{item.detail}, #{car.year}" />
                             </p:commandLink>
                             <h:outputText value="#{car.brand}, #{car.year}" style="display:inline-block"/>
                         </p:dataList>
@@ -60,9 +60,9 @@
 
                         <p:toolbar>
                             <f:facet name="left">
-                                <p:commandButton type="button" value="Reportes" icon="ui-icon-document" />
+                                <p:commandButton action="#" type="button" value="Reportes" icon="ui-icon-document" />
 
-                                <p:commandButton type="button" value="Nueva asignatura" icon="ui-icon-plus" />
+                                <p:commandButton action="#" type="button" value="Nueva asignatura" icon="ui-icon-plus" />
                                 <span class="ui-separator">
                                     <span class="ui-icon ui-icon-grip-dotted-vertical" />
                                 </span>
@@ -78,16 +78,16 @@
                         </p:toolbar>
                     </h:form>
 
-                    <p:dataTable var="course" value="#{dtBasicView.courses}" rows="20" paginator="true">
+                    <p:dataTable var="subject" value="#{subjectController.subjects}" rows="8" paginator="true">
                         <p:column headerText="Nombre de la asignatura">
-                            <h:outputText value="#{course.coursename}" />
+                            <h:outputText value="#{subject.nombre}" />
                         </p:column>
                         <p:column headerText="Acciones">
-                            <p:button outcome="course" icon="ui-icon-arrowrefresh-1-w" title="Icon Only">
-                                <f:param name="productId" value="#{course.id}" />
+                            <p:button outcome="system" icon="ui-icon-arrowrefresh-1-w" title="Icon Only">
+                                <f:param name="subject" value="#{subject.idasignatura}" />
                             </p:button>
-                            <p:button outcome="coursedelete" icon="ui-icon-close" title="Icon Only">
-                                <f:param name="productId" value="#{course.id}" />
+                            <p:button outcome="system" icon="ui-icon-close" title="Icon Only">
+                                <f:param name="deleteSubject" value="#{subject.idasignatura}" />
                             </p:button>
                         </p:column>
                     </p:dataTable>

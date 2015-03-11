@@ -9,81 +9,154 @@
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>PrimeFaces</title>
+                <title>Sistema de gestión de cursos</title>
             </f:facet>
         </h:head>
-
         <h:body>
-
-            <p:layout fullPage="true">
-
+            <p:layout fullPage="true" >
                 <p:layoutUnit position="center" resizable="true" closable="false" collapsible="false">
-                    <p:menubar>
-                        <p:menuitem value="Usuarios " url="users.xhtml"/>
-                        <p:menuitem value="Alumnos " url="students.xhtml" />
-                        <p:menuitem value="Cursos " url="courses.xhtml" />
-                        <p:menuitem value="Sistema " url="system.xhtml" />
-                        <p:submenu label="Mi cuenta ">
-                            <p:menuitem value="Mi cuenta" url="account.xhtml"/>
-                            <p:menuitem value="Cerrar sesión" url="login.xhtml"/>
-                        </p:submenu>
-                    </p:menubar>
-
+                    <h:form>
+                        <p:toolbar>
+                            <f:facet name="left">
+                                <p:menubar style="border: none; ">
+                                    <p:menuitem value="SRS " url="../index.xhtml" style="margin-right: 10px;"/>
+                                    <p:menuitem value="Comunidad " url="../users.xhtml" style="margin-right: 10px;"/>
+                                    <p:menuitem value="Cursos " url="../courses.xhtml" style="margin-right: 10px;"/>
+                                    <p:menuitem value="Sistema " url="../system.xhtml" style="margin-right: 10px;"/>
+                                </p:menubar>
+                            </f:facet>
+                            <f:facet name="right">
+                                <p:menubar style = "border: none;">
+                                    <p:submenu label="Mi cuenta ">
+                                        <p:menuitem value="Mi cuenta" url="../account.xhtml"/>
+                                        <p:menuitem value="Cerrar sesión" url="../login.xhtml"/>
+                                    </p:submenu>
+                                </p:menubar>
+                            </f:facet>
+                        </p:toolbar>
+                    </h:form>
+                    <br/>
                     <p:panel>
                         <h:form id="formulario">
-                            <h:panelGrid  columns="6" cellpadding="5" >
-                                <p:outputLabel for="name" value="Nombre"></p:outputLabel>
-                                <p:inputText id="name" value="" required="true"
-                                             label="Nombre">
-                                    <f:validateLength minimum="20" />
-                                </p:inputText>
+                            <p:fieldset legend="Datos generales" style="margin-bottom:20px">
+                                <h:panelGrid  columns="6" cellpadding="5" >
+                                    <p:outputLabel for="name" value="Nombre"></p:outputLabel>
+                                    <p:inputText id="name" value="" required="true"
+                                                 label="Nombre">
+                                        <f:validateLength minimum="20" />
+                                    </p:inputText>
 
-                                <p:outputLabel for="lastname" value="Apellido Paterno:"></p:outputLabel>
-                                <p:inputText id="lastname" value="" required="true"
-                                             label="Apellido Paterno">
-                                    <f:validateLength minimum="20" />
-                                </p:inputText>
-
-                                <p:outputLabel for="surname" value="Apellido Materno:"></p:outputLabel>
-                                <p:inputText id="surname" value="" required="true"
-                                             label="Apellido Materno">
-                                    <f:validateLength minimum="20" />
-                                </p:inputText>
-
-                                <p:outputLabel for="username" value="Usuario"></p:outputLabel>
-                                <p:inputText id="username" value="" required="true"
-                                             label="username">
-                                    <f:validateLength minimum="20" />
-                                </p:inputText>
-
-                                <p:outputLabel value="password:"></p:outputLabel>
-                                <p:inputText type="password" value="" required="true">
-                                    <f:validateLength minimum="20" />
-                                </p:inputText>
-
-                                <p:outputLabel for="role" value="Role: " />
-                                <p:selectOneMenu id="role" value="" style="width:155px">
-                                    <f:selectItem itemLabel="Select One" itemValue="" />
-                                    <f:selectItem itemLabel="Administrador" itemValue="Administrador" />
-                                    <f:selectItem itemLabel="Coordinador" itemValue="Coordinador" />
-                                    <f:selectItem itemLabel="Instructor" itemValue="Instructor" />
-                                    <f:selectItem itemLabel="Asistente" itemValue="Asistente" />
-                                    
-                                </p:selectOneMenu>
-                            </h:panelGrid>
+                                    <p:outputLabel for="lastname" value="Apellido Paterno:"></p:outputLabel>
+                                    <p:inputText id="lastname" value="" required="true"
+                                                 label="Apellido Paterno">
+                                        <f:validateLength minimum="20" />
+                                    </p:inputText>
+                                    <p:outputLabel for="surname" value="Apellido Materno:"></p:outputLabel>
+                                    <p:inputText id="surname" value="" required="true"
+                                                 label="Apellido Materno">
+                                        <f:validateLength minimum="20" />
+                                    </p:inputText>
+                                    <p:outputLabel for="username" value="Usuario"></p:outputLabel>
+                                    <p:inputText id="username" value="" required="true"
+                                                 label="username">
+                                        <f:validateLength minimum="20" />
+                                    </p:inputText>
+                                    <p:outputLabel value="password:"></p:outputLabel>
+                                    <p:password value="" required="true" feedback="true">
+                                        <f:validateLength minimum="20" />
+                                    </p:password>
+                                    <p:outputLabel for="role" value="Role: " />
+                                    <p:selectOneMenu id="role" required="true" style="width:155px">
+                                        <f:selectItem itemLabel="Administrador" itemValue="1" />
+                                        <f:selectItem itemLabel="Coordinador" itemValue="2" />
+                                        <f:selectItem itemLabel="Instructor" itemValue="3" />
+                                        <f:selectItem itemLabel="Asistente" itemValue="4" />
+                                        <f:selectItem itemLabel="Alumno" itemValue="5" />
+                                    </p:selectOneMenu>
+                                </h:panelGrid>
+                            </p:fieldset>
+                        </h:form>
+                        <h:form>
+                            <p:growl id="msgs1" showDetail="true" />
+                            <p:fieldset legend="Dirección" style="margin-bottom:20px">
+                                <h:panelGrid  columns="6" cellpadding="6">
+                                    <p:outputLabel for="calle" value="calle"></p:outputLabel>
+                                    <p:inputText id="calle" value="" required="true"
+                                                 label="calle">
+                                        <f:validateLength minimum="20" />
+                                    </p:inputText>
+                                    <p:outputLabel for="no_exterior" value="numero Exterior:"
+                                                   ></p:outputLabel>
+                                    <p:inputText id="no_exterior" value="" required="true"
+                                                 label="no_exterior"  style="width: 90px;" >
+                                        <f:validateLength minimum="20" />
+                                    </p:inputText>
+                                    <p:outputLabel for="no_interior" value="numero interior"></p:outputLabel>
+                                    <p:inputText id="no_interior" value="" required="true"
+                                                 label="no_interior" style="width: 90px;">
+                                        <f:validateLength minimum="20" />
+                                    </p:inputText>
+                                    <p:outputLabel for="colonia" value="Colonia:"></p:outputLabel>
+                                    <p:inputText id="colonia" value="" required="true"
+                                                 label="colonia">
+                                        <f:validateLength minimum="20" />
+                                    </p:inputText>
+                                    <p:outputLabel for="cp" value="Codido Postal:"></p:outputLabel>
+                                    <p:inputText id="cp" value="" required="true" style="width: 90px;">
+                                        <f:validateLength minimum="20" />
+                                    </p:inputText> 
+                                    <p:outputLabel value="Estado: " />
+                                    <p:selectOneMenu id="estado"  style="width:155px">
+                                        <f:selectItems value="#{stateController.estados}"/>
+                                    </p:selectOneMenu>
+                                    <p:outputLabel value="Municipio/Delegación: " />
+                                    <p:selectOneMenu id="municipio" value="" style="width:155px">
+                                    </p:selectOneMenu>
+                                </h:panelGrid>
+                            </p:fieldset>
+                            <p:growl id="msgs2" showDetail="true" />
+                            <p:fieldset legend="Telefono" style="margin-bottom:20px">
+                                <h:panelGrid  columns="6" cellpadding="6">
+                                    <p:outputLabel for="particular" value="Particular:"></p:outputLabel>
+                                    <p:inputText id="particular" value="" required="true"
+                                                 label="calle">
+                                        <f:validateLength minimum="20" />
+                                    </p:inputText>
+                                    <p:outputLabel for="oficina" value="Oficina:"
+                                                   ></p:outputLabel>
+                                    <p:inputText id="oficina" value="" required="true"
+                                                 label="oficina"  >
+                                        <f:validateLength minimum="20" />
+                                    </p:inputText>
+                                    <p:outputLabel for="celular" value="Celular:"
+                                                   ></p:outputLabel>
+                                    <p:inputText id="celular" value="" required="true"
+                                                 label="celular"   >
+                                        <f:validateLength minimum="20" />
+                                    </p:inputText>
+                                </h:panelGrid>
+                            </p:fieldset>
+                            <p:growl id="msgs3" showDetail="true" />
+                            <p:fieldset legend="Otros" style="margin-bottom:20px">
+                                <h:panelGrid  columns="6" cellpadding="6">
+                                    <p:outputLabel for="email" value="E-mail:"></p:outputLabel>
+                                    <p:inputText id="email" value="" required="true">
+                                        <f:validateLength minimum="20" />
+                                    </p:inputText>
+                                    <p:outputLabel for="email2" value="E-mail 2:"></p:outputLabel>
+                                    <p:inputText id="email2" value="" required="true">
+                                        <f:validateLength minimum="20" />
+                                    </p:inputText>
+                                </h:panelGrid>
+                            </p:fieldset>
                         </h:form>
                     </p:panel>
                 </p:layoutUnit>
-
                 <p:layoutUnit position="south" size="30" closable="true" collapsible="true" style="font-size: 13px;" >
                     <center>Escuela Superior de Cómputo - 2015. Instituto Politécnico Nacional</center>
                 </p:layoutUnit>
-
-
             </p:layout>
-
         </h:body>
-
     </f:view>
 </html>
 

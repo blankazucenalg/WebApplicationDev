@@ -1,5 +1,5 @@
 package com.proyecto.model;
-// Generated 10-mar-2015 15:08:19 by Hibernate Tools 4.3.1
+// Generated 10-mar-2015 17:06:19 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -20,7 +20,7 @@ public class Usuario  implements java.io.Serializable {
      private String clave;
      private int rol;
      private Date fecha;
-     private byte estado;
+     private int estado;
      private Set<Email> emails = new HashSet<Email>(0);
      private Set<Telefono> telefonos = new HashSet<Telefono>(0);
      private Set<Historico> historicos = new HashSet<Historico>(0);
@@ -32,7 +32,7 @@ public class Usuario  implements java.io.Serializable {
     }
 
 	
-    public Usuario(String nombre, String usuario, String clave, int rol, Date fecha, byte estado) {
+    public Usuario(String nombre, String usuario, String clave, int rol, Date fecha, int estado) {
         this.nombre = nombre;
         this.usuario = usuario;
         this.clave = clave;
@@ -40,7 +40,7 @@ public class Usuario  implements java.io.Serializable {
         this.fecha = fecha;
         this.estado = estado;
     }
-    public Usuario(String nombre, String paterno, String materno, String usuario, String clave, int rol, Date fecha, byte estado, Set<Email> emails, Set<Telefono> telefonos, Set<Historico> historicos, Set<Curso> cursos, Set<AlumnoTienePendiente> alumnoTienePendientes, Set<Direccion> direccions) {
+    public Usuario(String nombre, String paterno, String materno, String usuario, String clave, int rol, Date fecha, int estado, Set<Email> emails, Set<Telefono> telefonos, Set<Historico> historicos, Set<Curso> cursos, Set<AlumnoTienePendiente> alumnoTienePendientes, Set<Direccion> direccions) {
        this.nombre = nombre;
        this.paterno = paterno;
        this.materno = materno;
@@ -113,11 +113,11 @@ public class Usuario  implements java.io.Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    public byte getEstado() {
+    public int getEstado() {
         return this.estado;
     }
     
-    public void setEstado(byte estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
     public Set<Email> getEmails() {

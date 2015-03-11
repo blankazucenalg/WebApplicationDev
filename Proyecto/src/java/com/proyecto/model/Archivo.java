@@ -1,5 +1,5 @@
 package com.proyecto.model;
-// Generated 10-mar-2015 15:08:19 by Hibernate Tools 4.3.1
+// Generated 10-mar-2015 17:06:19 by Hibernate Tools 4.3.1
 
 
 

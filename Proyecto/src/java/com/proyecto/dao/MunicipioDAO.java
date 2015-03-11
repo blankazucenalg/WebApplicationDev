@@ -5,6 +5,7 @@
  */
 package com.proyecto.dao;
 
+import com.proyecto.model.Estado;
 import com.proyecto.model.Municipio;
 import com.proyecto.utils.HibernateUtil;
 import java.util.Collection;
@@ -77,6 +78,22 @@ public class MunicipioDAO {
         return m;
     }
 
+    public Collection loadAll(Estado e) throws Exception {
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction tx = session.getTransaction();
+        List list = null;
+        try {
+            tx.begin();
+            Query q = session.createQuery("from Municipio as mun where mun.estado="+e.getIdestado());
+            list = q.list();
+            tx.commit();
+        } catch (HibernateException he) {
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+        }
+        return list;
+    }
     public Collection loadAll() throws Exception {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = session.getTransaction();
