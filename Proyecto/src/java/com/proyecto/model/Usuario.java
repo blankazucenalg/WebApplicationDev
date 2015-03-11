@@ -163,8 +163,11 @@ public class Usuario  implements java.io.Serializable {
         this.direccions = direccions;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "id: "+idusuario+" username: "+usuario+" rol: "+rol;
+    }
+    
 
 }
 

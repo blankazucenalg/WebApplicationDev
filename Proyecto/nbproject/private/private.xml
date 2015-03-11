@@ -3,14 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/azu/Proyectos/WebApplicationDev/Proyecto/web/system.xhtml</file>
             <file>file:/home/azu/Proyectos/WebApplicationDev/Proyecto/web/form/user.xhtml</file>
-            <file>file:/home/azu/Proyectos/WebApplicationDev/Proyecto/src/java/com/proyecto/dao/AlumnoTienePendienteDAO.java</file>
-            <file>file:/home/azu/Proyectos/WebApplicationDev/Proyecto/src/java/com/proyecto/utils/HibernateUtil.java</file>
-            <file>file:/home/azu/Proyectos/WebApplicationDev/Proyecto/src/java/com/proyecto/controller/UserController.java</file>
-            <file>file:/home/azu/Proyectos/WebApplicationDev/Proyecto/src/java/com/proyecto/controller/LoginController.java</file>
-            <file>file:/home/azu/Proyectos/WebApplicationDev/Proyecto/web/users.xhtml</file>
+            <file>file:/home/azu/Proyectos/WebApplicationDev/Proyecto/src/java/com/proyecto/model/Municipio.java</file>
+            <file>file:/home/azu/Proyectos/WebApplicationDev/Proyecto/src/java/com/proyecto/beans/EstadoBean.java</file>
+            <file>file:/home/azu/Proyectos/WebApplicationDev/Proyecto/src/java/com/proyecto/beans/UsuarioBean.java</file>
+            <file>file:/home/azu/Proyectos/WebApplicationDev/Proyecto/src/java/com/proyecto/beans/MunicipioBean.java</file>
             <file>file:/home/azu/Proyectos/WebApplicationDev/Proyecto/web/login.xhtml</file>
+            <file>file:/home/azu/Proyectos/WebApplicationDev/Proyecto/web/users.xhtml</file>
+            <file>file:/home/azu/Proyectos/WebApplicationDev/Proyecto/src/java/com/proyecto/model/Estado.java</file>
         </group>
     </open-files>
 </project-private>

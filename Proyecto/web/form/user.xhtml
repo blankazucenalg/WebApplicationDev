@@ -38,35 +38,36 @@
                     <br/>
                     <p:panel>
                         <h:form id="formulario">
+                            <h:inputHidden id="action" value="#{usuarioBean.action}"/>
                             <p:fieldset legend="Datos generales" style="margin-bottom:20px">
-                                <h:panelGrid  columns="6" cellpadding="5" >
+                                <h:panelGrid  columns="2" cellpadding="5" >
                                     <p:outputLabel for="name" value="Nombre"></p:outputLabel>
-                                    <p:inputText id="name" value="" required="true"
+                                    <p:inputText id="name" value="#{usuarioBean.selected.nombre}" required="true"
                                                  label="Nombre">
                                         <f:validateLength minimum="20" />
                                     </p:inputText>
 
-                                    <p:outputLabel for="lastname" value="Apellido Paterno:"></p:outputLabel>
-                                    <p:inputText id="lastname" value="" required="true"
+                                    <p:outputLabel for="lastname" value="Apellido paterno"></p:outputLabel>
+                                    <p:inputText id="lastname" value="#{usuarioBean.selected.paterno}" required="true"
                                                  label="Apellido Paterno">
                                         <f:validateLength minimum="20" />
                                     </p:inputText>
-                                    <p:outputLabel for="surname" value="Apellido Materno:"></p:outputLabel>
-                                    <p:inputText id="surname" value="" required="true"
+                                    <p:outputLabel for="surname" value="Apellido materno"></p:outputLabel>
+                                    <p:inputText id="surname" value="#{usuarioBean.selected.materno}" required="true"
                                                  label="Apellido Materno">
                                         <f:validateLength minimum="20" />
                                     </p:inputText>
                                     <p:outputLabel for="username" value="Usuario"></p:outputLabel>
-                                    <p:inputText id="username" value="" required="true"
+                                    <p:inputText id="username" value="#{usuarioBean.selected.usuario}" required="true"
                                                  label="username">
                                         <f:validateLength minimum="20" />
                                     </p:inputText>
-                                    <p:outputLabel value="password:"></p:outputLabel>
+                                    <p:outputLabel value="Contraseña"></p:outputLabel>
                                     <p:password value="" required="true" feedback="true">
                                         <f:validateLength minimum="20" />
                                     </p:password>
-                                    <p:outputLabel for="role" value="Role: " />
-                                    <p:selectOneMenu id="role" required="true" style="width:155px">
+                                    <p:outputLabel for="role" value="Rol" />
+                                    <p:selectOneMenu id="role" required="true" value="#{usuarioBean.selected.rol}" style="width:155px">
                                         <f:selectItem itemLabel="Administrador" itemValue="1" />
                                         <f:selectItem itemLabel="Coordinador" itemValue="2" />
                                         <f:selectItem itemLabel="Instructor" itemValue="3" />
@@ -79,7 +80,7 @@
                         <h:form>
                             <p:growl id="msgs1" showDetail="true" />
                             <p:fieldset legend="Dirección" style="margin-bottom:20px">
-                                <h:panelGrid  columns="6" cellpadding="6">
+                                <h:panelGrid  columns="4" cellpadding="6">
                                     <p:outputLabel for="calle" value="calle"></p:outputLabel>
                                     <p:inputText id="calle" value="" required="true"
                                                  label="calle">
@@ -106,17 +107,18 @@
                                         <f:validateLength minimum="20" />
                                     </p:inputText> 
                                     <p:outputLabel value="Estado: " />
-                                    <p:selectOneMenu id="estado"  style="width:155px">
-                                        <f:selectItems value="#{stateController.estados}"/>
+                                    <p:selectOneMenu id="estado">
+                                        <f:selectItems value="#{estadoBean.states}"/>
                                     </p:selectOneMenu>
                                     <p:outputLabel value="Municipio/Delegación: " />
-                                    <p:selectOneMenu id="municipio" value="" style="width:155px">
+                                    <p:selectOneMenu id="municipio">
+                                        <f:selectItems value="#{municipioBean.municipios}"/>
                                     </p:selectOneMenu>
                                 </h:panelGrid>
                             </p:fieldset>
                             <p:growl id="msgs2" showDetail="true" />
                             <p:fieldset legend="Telefono" style="margin-bottom:20px">
-                                <h:panelGrid  columns="6" cellpadding="6">
+                                <h:panelGrid  columns="4" cellpadding="6">
                                     <p:outputLabel for="particular" value="Particular:"></p:outputLabel>
                                     <p:inputText id="particular" value="" required="true"
                                                  label="calle">
@@ -138,7 +140,7 @@
                             </p:fieldset>
                             <p:growl id="msgs3" showDetail="true" />
                             <p:fieldset legend="Otros" style="margin-bottom:20px">
-                                <h:panelGrid  columns="6" cellpadding="6">
+                                <h:panelGrid  columns="4" cellpadding="6">
                                     <p:outputLabel for="email" value="E-mail:"></p:outputLabel>
                                     <p:inputText id="email" value="" required="true">
                                         <f:validateLength minimum="20" />
@@ -148,9 +150,11 @@
                                         <f:validateLength minimum="20" />
                                     </p:inputText>
                                 </h:panelGrid>
+                                <p:commandButton action="#{usuarioBean.actualizar}" value="Guardar información"
+                                                 style="width: 300px;"/>
                             </p:fieldset>
                         </h:form>
-                    </p:panel>
+                    </p:panel>  
                 </p:layoutUnit>
                 <p:layoutUnit position="south" size="30" closable="true" collapsible="true" style="font-size: 13px;" >
                     <center>Escuela Superior de Cómputo - 2015. Instituto Politécnico Nacional</center>

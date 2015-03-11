@@ -5,9 +5,13 @@
  */
 package com.proyecto.dao;
 
+import com.proyecto.model.Accion;
+import com.proyecto.model.Historico;
 import com.proyecto.model.Usuario;
 import com.proyecto.utils.HibernateUtil;
+import java.time.Instant;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -51,9 +55,10 @@ public class UsuarioDAO {
     public void delete(Usuario u) throws Exception {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = session.getTransaction();
+        u.setEstado(1);
         try {
             tx.begin();
-            session.delete(u);
+            session.update(u);
             tx.commit();
         } catch (HibernateException he) {
             if (tx != null && tx.isActive()) {
@@ -77,13 +82,13 @@ public class UsuarioDAO {
         return u;
     }
 
-    public Collection loadAll(int startID, int endID) throws Exception {
+    public Collection loadAll() throws Exception {
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction tx = session.getTransaction();
         List list = null;
         try {
             tx.begin();
-            Query q = session.createQuery("from Usuario as usuario where usuario.idusuario between '"+startID+"' and '"+endID+"'");
+            Query q = session.createQuery("from Usuario as us where us.estado='0'");
             list = q.list();
             tx.commit();
         } catch (HibernateException he) {

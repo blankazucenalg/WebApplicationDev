@@ -49,7 +49,7 @@
                                 <p:commandButton type="button" value="Reportes" icon="ui-icon-document" />
 
                                 <p:button outcome="form/user" value="Nuevo usuario" icon="ui-icon-person" />
-                                
+
                                 <span class="ui-separator">
                                     <span class="ui-icon ui-icon-grip-dotted-vertical" />
                                 </span>
@@ -65,29 +65,34 @@
                         </p:toolbar>
                     </h:form>
 
-                    <p:dataTable var="user" value="#{userController.users}" rows="20" paginator="true">
+                    <p:dataTable var="user" value="#{usuarioBean.users}" rows="20" paginator="true">
                         <p:column headerText="Nombre de usuario">
                             <h:outputText value="#{user.usuario}" />
                         </p:column>
 
                         <p:column headerText="Nombre completo">
-                            <h:outputText value="#{user.nombre}" />
+                            <h:outputText value="#{user.nombre.concat(' ').concat(user.paterno).concat(' ').concat(user.materno)}" />
                         </p:column>
 
                         <p:column headerText="Rol">
-                            <h:outputText value="#{userController.roles[user.rol] }" />
+                            <h:outputText value="#{usuarioBean.roles[user.rol] }" />
                         </p:column>
 
                         <p:column headerText="Fecha registro">
                             <h:outputText value="#{user.fecha}" />
                         </p:column>
                         <p:column headerText="Acciones">
-                            <p:button outcome="form/user" icon="ui-icon-arrowrefresh-1-w" title="Visualizar">
-                                <f:param name="productId" value="#{user.idusuario}" />
-                            </p:button>
-                            <p:button outcome="users" icon="ui-icon-close" title="Eliminar">
-                                <f:param name="deleteUser" value="#{user.idusuario}" />
-                            </p:button>
+                            <h:form>
+                                <p:growl id="message" showDetail="true" />
+                                <p:commandButton action="#{usuarioBean.prepareView()}"
+                                                 icon="ui-icon-arrowrefresh-1-w" title="Editar" >
+                                    <f:param name="idusuario" value="#{user.idusuario}" />
+                                </p:commandButton>
+                                <p:commandButton actionListener="#{usuarioBean.borrar}" update="message" title="Eliminar" immediate="true"
+                                                 ajax="false" icon="ui-icon ui-icon-trash" >
+                                    <f:param name="idusuario" value="#{user.idusuario}" />
+                                </p:commandButton>
+                            </h:form>
                         </p:column>
                     </p:dataTable>
                 </p:layoutUnit>
